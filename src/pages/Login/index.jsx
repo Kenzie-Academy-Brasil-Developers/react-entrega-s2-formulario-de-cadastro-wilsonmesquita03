@@ -1,19 +1,16 @@
 import { Form } from "../../components/FormMain/style"
-import { TextField } from "@mui/material"
 import { Container } from "./style"
 import { Button } from "../../components/Button/style"
-import * as yup from "yup"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import api from "../../services"
+import { useNavigate } from "react-router-dom"
+import Logo from "../../assets/Logo.svg"
+
+import { LoginSchema, InputEmail, InputPassword } from "../../components/Inputs"
 
 const Login = () => {
-    const userSchema = yup.object().shape({
-        email: yup.string().required("Email obrigatório").email(),
-        password: yup.string().required("Senha obrigatória").min(4, "A senha deve ter no minimo 8 digitos")
-       
-    })
-
+    const navigate = useNavigate()
 
     /* .matches(/[A-Z]/, "deve conter ao menos 1 letra maiúscula")
     .matches(/([a-z])/, "deve conter ao menos 1 letra minúscula")
@@ -21,31 +18,34 @@ const Login = () => {
     .matches(/(\W)|_/, "deve conter ao menos 1 caracter especial") */
 
     const { register, handleSubmit, formState: { errors} } = useForm({
-        resolver: yupResolver(userSchema)
+        resolver: yupResolver(LoginSchema)
     })
 
-    const login = (data) => {
+    const loging = (data) => {
         api.post("sessions", data)
         .then(res => {
-            console.log(res)
-            window.localStorage.setItem("@userToken", res.data.token)
+            localStorage.setItem("@TOKEN", res.data.token)
+            localStorage.setItem("@USERID", res.data.user.id)
+            navigate("dashboard")
             return res
         })
-        .catch(err => console.log(err))
+        .catch(err => console.err(err))
     }
 
+
     const notRegistered = () => {
-        
+        navigate("register", {replace: true})
     }
 
     return (
         <Container>
-            <Form onSubmit={handleSubmit(login)}>
+            <img src={Logo} alt="" />
+            <Form onSubmit={handleSubmit(loging)}>
                 <h1>Conecte-se</h1>
-                <TextField id="email" label="Email" variant="filled" sx={{width: "90%"}} {...register("email")} error={errors.name ? true : false} helperText={errors.name?.message}/>
-                <TextField id="password" label="Senha" variant="filled" type="password" sx={{width: "90%"}} {...register("password")} error={errors.password ? true : false} helperText={errors.password?.message}/>
-                <Button>Entrar</Button>
-                <p>Ainda não possui uma conta?</p>
+                <InputEmail register={register} error={errors.email ? true : false} message={errors.email?.message}/>
+                <InputPassword register={register} error={errors.password ? true : false} message={errors.password?.message}/>
+                <Button type="submit">Entrar</Button>
+                <p>Ainda não é registrado?</p>
                 <Button onClick={notRegistered} theme="grey">Cadastre-se</Button>
             </Form>
         </Container>

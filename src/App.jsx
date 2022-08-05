@@ -1,11 +1,11 @@
-import Login from './pages/Login';
 import GlobalSyle from './styles/global';
+import Routes from './routes'; 
 
 function App() {
   return (
     <div className="App">
       <GlobalSyle />
-      <Login />
+      <Routes />
     </div>
   );
 }
