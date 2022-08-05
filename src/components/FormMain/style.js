@@ -3,8 +3,22 @@ import styled from "styled-components";
 const Form = styled.form`
     width: 95vw;
     max-width: 370px;
-
+    max-height: 100%;
+    
+    overflow-y: scroll;
+    
     box-sizing: border-box;
+
+    ::-webkit-scrollbar {
+        width: 2px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: blue;
+        border-radius: 20px;
+        border: 3px solid var(--Grey-2);
+    }
+
 
     padding: 1rem;
 
