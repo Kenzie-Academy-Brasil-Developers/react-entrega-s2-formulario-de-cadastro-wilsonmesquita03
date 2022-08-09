@@ -7,7 +7,7 @@ const Container = styled.div`
     width: 100vw;
     height: 72px;
 
-    background-color: var(--Grey-4);
+    background-color: transparent;
 
     border-bottom: 1px solid var(--Grey-3);
 

@@ -15,7 +15,7 @@ const NavBar = () => {
         <Container>
             <DivHeader>
                 <img src={Logo} alt="" />
-                <Button onClick={logout}  h="32px" theme="grey">Sair</Button>
+                <Button onClick={logout}  h="32px" tipo="grey">Sair</Button>
             </DivHeader>
         </Container>
     )

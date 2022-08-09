@@ -27,7 +27,7 @@ const Form = styled.form`
     align-items: center;
     gap: 1rem;
 
-    background-color: var(--Grey-3);
+    background-color: ${({theme}) => theme.form.backgroundColor};
 
     border-radius: 8px;
 
@@ -36,7 +36,7 @@ const Form = styled.form`
     }
 
     label {
-        color: var(--Grey-0);
+        color: ${({theme}) => theme.h1.color};
     }
 
 
@@ -45,7 +45,7 @@ const Form = styled.form`
     }
 
     input {
-        color: var(--Grey-0);
+        color: ${({theme}) => theme.h1.color};
         min-width: 90%;
     }
 
@@ -58,7 +58,7 @@ const Form = styled.form`
         padding-top: 2rem;
         padding-bottom: 1rem;
 
-        color: var(--Grey-0);
+        color: ${({theme}) => theme.h1.color};
     }
 `
 

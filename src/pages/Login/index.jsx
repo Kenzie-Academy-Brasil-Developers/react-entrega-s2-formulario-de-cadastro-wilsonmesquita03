@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom"
 import Logo from "../../assets/Logo.svg"
 
 import { LoginSchema, InputEmail, InputPassword } from "../../components/Inputs"
+import SwitchMode from "../../components/SwitchMode"
 
 const Login = () => {
     const navigate = useNavigate()
@@ -40,13 +41,14 @@ const Login = () => {
     return (
         <Container>
             <img src={Logo} alt="" />
+            <SwitchMode />
             <Form onSubmit={handleSubmit(loging)}>
                 <h1>Conecte-se</h1>
                 <InputEmail register={register} error={errors.email ? true : false} message={errors.email?.message}/>
                 <InputPassword register={register} error={errors.password ? true : false} message={errors.password?.message}/>
                 <Button type="submit">Entrar</Button>
                 <p>Ainda não é registrado?</p>
-                <Button onClick={notRegistered} theme="grey">Cadastre-se</Button>
+                <Button onClick={notRegistered} tipo="grey">Cadastre-se</Button>
             </Form>
         </Container>
         

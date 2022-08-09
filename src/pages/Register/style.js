@@ -10,10 +10,10 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     
-    background-color: var(--Grey-4);
+    background-color: ${({theme}) => theme.page.backgroundColor};
 
     #demo-simple-select-filled {
-        color: var(--Grey-0);
+        color: ${({theme}) => theme.h1.color};
     }
 `
 

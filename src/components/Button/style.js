@@ -18,8 +18,8 @@ const Button = styled.button`
     font-weight: ${(fw) => fw || 500};
     font-family: 'Inter', sans-serif;
 
-    ${({theme}) => {
-        if(theme === "grey"){
+    ${({tipo}) => {
+        if(tipo === "grey"){
             return css`
                 background-color: var(--Grey-3);
                 
@@ -44,6 +44,8 @@ const Button = styled.button`
             `
         }
     }}
+
+
 
 
 `

@@ -9,7 +9,7 @@ const Container = styled.header`
 
     border-bottom: 1px solid var(--Grey-3);
 
-    background-color: var(--Grey-4);
+    background-color: transparent;
 
 `
 

@@ -3,7 +3,11 @@ import styled from "styled-components";
 const Container = styled.div`
     width: 100vw;
     height: 100vh;
-    background-color: var(--Grey-4);
+    background-color: ${({theme}) => theme.form.backgroundColor};
+
+    h1, p {
+        color: ${({theme}) => theme.h1.color};
+    }
 `
 
 const MoreInfo = styled.div`
@@ -16,10 +20,6 @@ const MoreInfo = styled.div`
     max-width: 1000px;
     
     gap: 1rem;
-    
-    h1, p {
-        color: var(--Grey-0)
-    }
 `
 
 export { Container, MoreInfo }

@@ -34,7 +34,7 @@ const Register = () => {
         <Container>
             <Div>
                 <img src={Logo} alt="logo" />
-                <Button onClick={goBack} theme="grey" fw="600" h="40px">Voltar</Button>
+                <Button onClick={goBack} tipo="grey" fw="600" h="40px">Voltar</Button>
             </Div>
             <Form onSubmit={handleSubmit(registering)}>
                 <h1>Crie sua conta</h1>
