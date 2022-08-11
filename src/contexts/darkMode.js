@@ -3,14 +3,10 @@ import { createContext, useState } from "react"
 const darkModeContext = createContext({}) 
 
 const DarkModeProvider = ({children}) => {
-    const [isNightMode, setIsNightMode] = useState("dark")
+    const [isNightMode, setIsNightMode] = useState(true)
 
     const switchMode = () => {
-        if(isNightMode === "dark"){
-            setIsNightMode("light")
-        }else{
-            setIsNightMode("dark")
-        }
+        setIsNightMode(!isNightMode)
     }
     
     return (

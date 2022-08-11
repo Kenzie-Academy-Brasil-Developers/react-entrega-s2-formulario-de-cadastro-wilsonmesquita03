@@ -3,6 +3,8 @@ import Routes from './routes';
 import { ThemeProvider } from 'styled-components';
 import { useContext } from 'react';
 import { darkModeContext } from './contexts/darkMode';
+import AuthProvider from './contexts/AuthContext';
+import Loading from './components/Loading';
 
 function App() {
   const { isNightMode } = useContext(darkModeContext)
@@ -36,10 +38,14 @@ function App() {
 
   return (
     <div className="App">
-      <GlobalSyle />
-      <ThemeProvider theme={isNightMode === "light" ? light : dark}>
-        <Routes />
-      </ThemeProvider>
+      <AuthProvider>
+        <GlobalSyle />
+        <ThemeProvider theme={isNightMode ? dark : light}>
+          <Loading>
+            <Routes />
+          </Loading>
+        </ThemeProvider>
+      </AuthProvider>
     </div>
   );
 }

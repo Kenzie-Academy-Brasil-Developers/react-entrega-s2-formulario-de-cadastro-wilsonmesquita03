@@ -7,11 +7,10 @@ import {DarkModeProvider} from './contexts/darkMode';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
       <DarkModeProvider>
-        <App />
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
       </DarkModeProvider>
-    </BrowserRouter>
   </React.StrictMode>
 );
-

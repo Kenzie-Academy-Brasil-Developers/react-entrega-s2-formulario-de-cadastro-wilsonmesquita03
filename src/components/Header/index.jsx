@@ -1,23 +1,9 @@
-import { useEffect, useState } from "react"
+import { useContext } from "react"
 import { Container, DivHeader } from "./style"
-import api from "../../services"
+import { AuthContext } from "../../contexts/AuthContext"
 
 const Header = () => {
-    const [user, setUser] = useState(undefined)
-
-    useEffect(() => {
-        const userID = localStorage.getItem("@USERID")
-
-        api.get(`users/${userID}`)
-        .then(res => {
-            setUser(res.data)
-        })
-        .catch(err => {
-            console.error(err)
-        })
-    },[])
-
-    console.log(user)
+    const { user } = useContext(AuthContext)
 
     return (
         <Container>

@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-    width: 100vw;
-    height: 100vh;
-    background-color: ${({theme}) => theme.form.backgroundColor};
+    max-width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: ${({theme}) => theme.page.backgroundColor};
 
     h1, p {
         color: ${({theme}) => theme.h1.color};

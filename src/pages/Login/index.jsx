@@ -3,39 +3,28 @@ import { Container } from "./style"
 import { Button } from "../../components/Button/style"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
-import api from "../../services"
+
 import { useNavigate } from "react-router-dom"
 import Logo from "../../assets/Logo.svg"
 
 import { LoginSchema, InputEmail, InputPassword } from "../../components/Inputs"
 import SwitchMode from "../../components/SwitchMode"
+import { useContext } from "react"
+import { AuthContext } from "../../contexts/AuthContext"
 
 const Login = () => {
     const navigate = useNavigate()
 
-    /* .matches(/[A-Z]/, "deve conter ao menos 1 letra maiúscula")
-    .matches(/([a-z])/, "deve conter ao menos 1 letra minúscula")
-    .matches(/(\d)/, "deve conter ao menos 1 número")
-    .matches(/(\W)|_/, "deve conter ao menos 1 caracter especial") */
+    const { loging, loader, user } = useContext(AuthContext) 
 
     const { register, handleSubmit, formState: { errors} } = useForm({
         resolver: yupResolver(LoginSchema)
     })
 
-    const loging = (data) => {
-        api.post("sessions", data)
-        .then(res => {
-            localStorage.setItem("@TOKEN", res.data.token)
-            localStorage.setItem("@USERID", res.data.user.id)
-            navigate("dashboard")
-            return res
-        })
-        .catch(err => console.err(err))
-    }
 
-
-    const notRegistered = () => {
-        navigate("register", {replace: true})
+    const notRegistered = (e) => {
+        navigate("/register", {replace: true})
+        loader(800)
     }
 
     return (
