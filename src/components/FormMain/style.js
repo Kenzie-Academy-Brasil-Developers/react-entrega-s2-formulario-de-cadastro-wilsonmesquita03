@@ -5,7 +5,7 @@ const Form = styled.form`
     max-width: 370px;
     max-height: 100%;
     
-    overflow-y: scroll;
+    
     
     box-sizing: border-box;
 
