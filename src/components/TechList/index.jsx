@@ -20,9 +20,10 @@ const TechList = () => {
     },[])
 
     function deleteTech(id){
-        api.delete(`/users/techs/${id}`)
-        const newTechList = techList.filter(tech => tech.id !== id)
-        setTechList(newTechList)
+        api.delete(`/users/techs/${id}`).then(res => {
+            const newTechList = techList.filter(tech => tech.id !== id)
+            setTechList(newTechList)
+        }).catch(err => console.log(err))
     }
 
     return (

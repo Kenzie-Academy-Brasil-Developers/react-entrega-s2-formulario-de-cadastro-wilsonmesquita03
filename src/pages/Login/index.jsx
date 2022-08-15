@@ -15,7 +15,7 @@ import { AuthContext } from "../../contexts/AuthContext"
 const Login = () => {
     const navigate = useNavigate()
 
-    const { loging, loader, user } = useContext(AuthContext) 
+    const { loging, loader } = useContext(AuthContext) 
 
     const { register, handleSubmit, formState: { errors} } = useForm({
         resolver: yupResolver(LoginSchema)
@@ -30,7 +30,6 @@ const Login = () => {
     return (
         <Container>
             <img src={Logo} alt="" />
-            <SwitchMode />
             <Form onSubmit={handleSubmit(loging)}>
                 <h1>Conecte-se</h1>
                 <InputEmail register={register} error={errors.email ? true : false} message={errors.email?.message}/>

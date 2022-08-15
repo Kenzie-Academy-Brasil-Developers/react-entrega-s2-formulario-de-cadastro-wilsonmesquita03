@@ -32,7 +32,7 @@ const AuthProvider = ({children}) => {
     },[])
 
     const loging = (data) => {
-         api.post("sessions", data)
+        api.post("sessions", data)
         .then(res => {
             setUser(res.data.user)
             localStorage.setItem("@TOKEN", res.data.token)

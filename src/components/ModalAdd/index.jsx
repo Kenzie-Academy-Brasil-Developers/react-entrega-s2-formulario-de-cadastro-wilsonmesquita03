@@ -19,7 +19,7 @@ const ModalAdd = ({setTechList, closeModal}) => {
     
     function addTech(data){
         api.post("/users/techs", data)
-        .then(res => setTechList((oldList) => [...oldList, res.data]))
+        .then(res => setTechList((oldList) => [res.data, ...oldList]))
     }
 
     return (
