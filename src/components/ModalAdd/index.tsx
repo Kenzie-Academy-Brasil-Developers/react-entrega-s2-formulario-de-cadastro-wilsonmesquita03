@@ -1,12 +1,17 @@
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material"
-import { useForm } from "react-hook-form"
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 import { Button } from "../Button/style"
 import { Modal, ModalContainer, ModalHeader } from "./style"
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
-import api from "../../services"
+import { ReactNode } from "react"
 
-const ModalAdd = ({setTechList, closeModal}) => {
+interface IModalAddProps {
+    closeModal: () => void,
+    addTech: SubmitHandler<FieldValues>
+}
+
+const ModalAdd = ({closeModal, addTech}: IModalAddProps) => {
 
     const addSchema = yup.object().shape({
         title: yup.string().required("Campo obrigatório").min(3, "Minimo de 3 letras"),
@@ -16,11 +21,6 @@ const ModalAdd = ({setTechList, closeModal}) => {
     const {register, handleSubmit, formState: { errors }} = useForm({
         resolver: yupResolver(addSchema)
     })
-    
-    function addTech(data){
-        api.post("/users/techs", data)
-        .then(res => setTechList((oldList) => [res.data, ...oldList]))
-    }
 
     return (
         <ModalContainer>
@@ -29,7 +29,7 @@ const ModalAdd = ({setTechList, closeModal}) => {
                 <Button onClick={closeModal}>X</Button>
             </ModalHeader>
             <Modal onSubmit={handleSubmit(addTech)}>
-                <TextField id="name" label="Nome" variant="filled" type="text" sx={{width: "100%"}} {...register("title")} error={errors.title?.message ? true : false} helperText={errors.title?.message}/>
+                <TextField id="name" label="Nome" variant="filled" type="text" sx={{width: "100%"}} {...register("title")} error={errors.title?.message ? true : false} helperText={errors.title?.message as ReactNode}/>
                 <FormControl variant="filled" sx={{width: "100%", color: "var(--Grey-0)"}}>
                         <InputLabel id="demo-simple-select-filled-label">Selecionar Modulo</InputLabel>
                         <Select

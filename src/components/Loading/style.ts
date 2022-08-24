@@ -7,6 +7,7 @@ const LoadingContainer = styled.div`
     justify-content: center;
     width: 100vw;
     height: 100vh;
+    z-index: 2000;
     background-color: ${({theme}) => theme.page.backgroundColor};
 `
 

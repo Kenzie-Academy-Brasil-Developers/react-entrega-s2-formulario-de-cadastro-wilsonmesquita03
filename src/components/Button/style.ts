@@ -1,6 +1,13 @@
 import styled, { css } from "styled-components";
 
-const Button = styled.button`
+interface IButtonProps {
+    size?: string,
+    h?: string,
+    fw?: string,
+    tipo?: string
+}
+
+const Button = styled.button<IButtonProps>`
     font-size: ${({size}) => size || "1rem"};
     height: ${({h}) => h || "48px"};
     color: var(--Grey-0);
@@ -15,7 +22,7 @@ const Button = styled.button`
     justify-content: center;
     align-items: center;
 
-    font-weight: ${(fw) => fw || 500};
+    font-weight: ${({fw}) => fw || 500};
     font-family: 'Inter', sans-serif;
 
     ${({tipo}) => {

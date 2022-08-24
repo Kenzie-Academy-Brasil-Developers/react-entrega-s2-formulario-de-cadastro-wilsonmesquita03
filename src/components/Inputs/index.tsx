@@ -1,4 +1,6 @@
 import { TextField } from "@mui/material"
+import { ReactNode } from "react"
+import { FieldValues, UseFormRegister } from "react-hook-form"
 import * as yup from "yup"
 
 const LoginSchema = yup.object().shape({
@@ -22,37 +24,43 @@ const RegisterSchema = yup.object().shape({
     course_module: yup.string().required()
 })
 
-const InputName = ({register, error, message}) => {
+interface IInputProps {
+    register: UseFormRegister<FieldValues>,
+    error?: boolean,
+    message?: ReactNode,
+}
+
+const InputName = ({register, error, message}: IInputProps) => {
     return (
         <TextField id="name" label="Nome" variant="filled" type="text" sx={{width: "90%"}} {...register("name")} error={error} helperText={message}/>
     )
 }
 
-const InputPassword = ({register, error, message}) => {
+const InputPassword = ({register, error, message}: IInputProps) => {
     return (
         <TextField id="password" label="Senha" variant="filled" type="password" sx={{width: "90%"}} {...register("password")} error={error} helperText={message}/>
     )
 }
 
-const InputConfirmPassword = ({register, error, message}) => {
+const InputConfirmPassword = ({register, error, message}: IInputProps) => {
     return (
         <TextField id="confirm-password" label="Confirmar senha" variant="filled" type="password" sx={{width: "90%"}} {...register("confirmPassword")} error={error} helperText={message}/>
     )
 }
 
-const InputEmail = ({register, error, message}) => {
+const InputEmail = ({register, error, message}: IInputProps) => {
     return (
         <TextField id="email" label="Email" variant="filled" type="text" sx={{width: "90%"}} {...register("email")} error={error} helperText={message}/>
     )
 }
 
-const InputBio = ({register, error, message}) => {
+const InputBio = ({register, error, message}: IInputProps) => {
     return (
         <TextField id="bio" label="Bio" variant="filled" type="text" sx={{width: "90%"}} {...register("bio")} error={error} helperText={message}/>
     )
 }
 
-const InputContact = ({register, error, message}) => {
+const InputContact = ({register, error, message}: IInputProps) => {
     return (
         <TextField id="contact" label="Contato" variant="filled" type="text" sx={{width: "90%"}} {...register("contact")} error={error} helperText={message}/>
     )

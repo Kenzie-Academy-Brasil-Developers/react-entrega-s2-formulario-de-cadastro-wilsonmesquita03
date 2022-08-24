@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+interface IContainerProps{
+    theme: string,
+}
+
+const Container = styled.div<IContainerProps>`
     width: 100vw;
     min-height: 100vh;
 

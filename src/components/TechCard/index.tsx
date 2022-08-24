@@ -3,7 +3,14 @@ import { DivButton, LiContainer } from "./style"
 import TrashIcon from "../../assets/TrashIcon.svg"
 import { Button } from "@mui/material"
 
-const TechCard = ({title, status, deleteTech, id}) => {
+interface ITechCardProps {
+    title: string,
+    status: string,
+    deleteTech: (techID: number) => void
+    id: number
+}
+
+const TechCard = ({title, status, deleteTech, id}: ITechCardProps) => {
     return (
         <LiContainer>
             <h1>{title}</h1>

@@ -1,17 +1,17 @@
 import { Form } from "../../components/FormMain/style"
 import { Container, Div } from "./style"
 import { Button } from "../../components/Button/style"
-import { useForm } from "react-hook-form"
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import Logo from "../../assets/Logo.svg"
 import { InputName, InputEmail, InputPassword, InputConfirmPassword, InputBio, InputContact, RegisterSchema } from "../../components/Inputs"
 import { MenuItem, Select, FormControl, InputLabel } from "@mui/material"
 import { useNavigate } from "react-router-dom"
-import { useContext } from "react"
+import { ReactNode, useContext } from "react"
 import { AuthContext } from "../../contexts/AuthContext"
 
 const Register = () => {
-    const { loader, registering } = useContext(AuthContext)
+    const { loader, register: registering } = useContext(AuthContext)
 
     const navigate = useNavigate()
 
@@ -30,15 +30,15 @@ const Register = () => {
                 <img src={Logo} alt="logo" />
                 <Button onClick={goBack} tipo="grey" fw="600" h="40px">Voltar</Button>
             </Div>
-            <Form onSubmit={handleSubmit(registering)}>
+            <Form onSubmit={handleSubmit(registering as SubmitHandler<FieldValues>)}>
                 <h1>Crie sua conta</h1>
                 <p>Rapido e grátis, vamos nessa</p>
-                <InputName register={register} error={errors.name ? true : false} message={errors.name?.message}/>
-                <InputEmail register={register} error={errors.email ? true : false} message={errors.email?.message}/>
-                <InputPassword register={register} error={errors.password ? true : false} message={errors.password?.message}/>
-                <InputConfirmPassword register={register} error={errors.confirmPassword ? true : false} message ={errors.confirmPassword?.message}/>
-                <InputBio register={register} error={errors.bio ? true : false} message ={errors.bio?.message}/>
-                <InputContact register={register} error={errors.contact ? true : false} message ={errors.contact?.message} /> 
+                <InputName register={register} error={errors.name ? true : false} message={errors.name?.message as ReactNode}/>
+                <InputEmail register={register} error={errors.email ? true : false} message={errors.email?.message as ReactNode}/>
+                <InputPassword register={register} error={errors.password ? true : false} message={errors.password?.message as ReactNode}/>
+                <InputConfirmPassword register={register} error={errors.confirmPassword ? true : false} message ={errors.confirmPassword?.message as ReactNode}/>
+                <InputBio register={register} error={errors.bio ? true : false} message ={errors.bio?.message as ReactNode}/>
+                <InputContact register={register} error={errors.contact ? true : false} message ={errors.contact?.message as ReactNode} /> 
                 <FormControl variant="filled" sx={{ m: 1, minWidth: "90%" }}>
                     <InputLabel id="demo-simple-select-filled-label">Selecionar Modulo</InputLabel>
                     <Select
